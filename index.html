@@ -33,7 +33,7 @@
           endResults[step]['Step Name'] = res[step]['Event'];
           endResults[step]['Count'] = res[step]['Count'];
           endResults[step]['Average Time'] = res[step]['Time'] / res[step]['Count'];
-          endResults[step]['Total Conversion'] = res[step]['Count'] / total;
+          endResults[step]['Total Conversion'] = res[step]['Count'] * 100 / total;
         }
         console.log(endResults);
       });
