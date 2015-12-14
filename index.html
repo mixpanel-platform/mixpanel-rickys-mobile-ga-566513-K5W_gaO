@@ -9,6 +9,24 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
+      var res = {};
+      var numEvents = 3;
+      MP.api.funnel('event 1', 'event 2', 'event 4').done(function(results) {
+        var step = '';
+        var current = {};
+        console.log(results);
+        for (var i = 0; i < numEvents; i++) {
+          step = 'Step # ' + (i + 1);
+          res[step] = {};
+          for (var k in results[i]) {
+            current = results[i][k];
+            res[step]['Time'] = res[step]['Time'] + (current.count * current.avg_time) || (current.count * current.avg_time); 
+            res[step]['Count'] = res[step]['Count'] + current.count || current.count;
+            res[step]['Event'] = res[step]['Event'] || current.event;
+          }
+        }
+        console.log(res);
+      });
       // Run queries and display results here
     </script>
   </body>
