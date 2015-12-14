@@ -11,7 +11,7 @@
     <script>
       var res = {};
       var numEvents = 3;
-      MP.api.funnel('event 1', 'event 2', 'event 4').done(function(results) {
+      MP.api.funnel('Character Created', 'Game Played', 'In-App Purchase').done(function(results) {
         var step = '';
         var current = {};
         console.log(results);
