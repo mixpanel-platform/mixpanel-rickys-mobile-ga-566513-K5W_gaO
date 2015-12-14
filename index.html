@@ -9,6 +9,10 @@
   <body class="mixpanel-platform-body">
     <table width="100%" id='Result Table'></table>
     <script>
+    MP.api.funnel('Character Created', 'Game Played', {'segment': 'Campaign Source'}).done(function(results) {
+    console.log(results);
+});
+/*
       MP.api.funnel('Character Created', 'Game Played', 'In-App Purchase').done(function(results) {
         var res = {};
         var endResults = {};
@@ -54,6 +58,7 @@
         }
         console.log(endResults);
       });
+*/
     </script>
   </body>
 </html>
