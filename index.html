@@ -9,9 +9,10 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
-      var res = {};
-      var numEvents = 3;
       MP.api.funnel('Character Created', 'Game Played', 'In-App Purchase').done(function(results) {
+        var res = {};
+        var endResults
+        var numEvents = 3;
         var step = '';
         var current = {};
         console.log(results);
@@ -19,6 +20,7 @@
         for (var i = 0; i < numEvents; i++) {
           step = 'Step # ' + (i + 1);
           res[step] = {};
+          endResults[step] = {};
           for (var k in results[i]) {
             current = results[i][k];
             if (i == 0) {
@@ -28,8 +30,11 @@
             res[step]['Count'] = res[step]['Count'] + current.count || current.count;
             res[step]['Event'] = res[step]['Event'] || current.event;
           }
+          endResults[step]['Step Name'] = res[step]['Event'];
+          endResults[step]['Average Time'] = res[step]['Time'] / res[step]['Count'];
+          endResults[step]['Total Conversion'] = res[step]['Count'] / total;
         }
-        console.log(res, total);
+        console.log(endResults);
       });
       // Run queries and display results here
     </script>
