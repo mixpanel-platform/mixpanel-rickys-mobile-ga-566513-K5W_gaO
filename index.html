@@ -30,8 +30,9 @@
             res[step]['Event'] = res[step]['Event'] || current.event;
           }
           var table = document.getElementById('Result Table');
+          var row = table.insertRow(i);
           if (i == 0) {
-            var rowLabel = table.insertRow(i);
+            
             var stepNameLabel = row.insertCell(0);
             var countLabel = row.insertCell(1);
             var avgTimeLabel = row.insertCell(2);
@@ -41,7 +42,7 @@
             avgTime.innerHTML = 'Time to Convert';
             conv.innerHTML = 'Conversion Rate';
           }
-          var row = table.insertRow(i + 1);
+          row = table.insertRow(i + 1);
           var stepName = row.insertCell(0);
           var count = row.insertCell(1);
           var avgTime = row.insertCell(2);
