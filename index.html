@@ -15,17 +15,21 @@
         var step = '';
         var current = {};
         console.log(results);
+        var total = 0;
         for (var i = 0; i < numEvents; i++) {
           step = 'Step # ' + (i + 1);
           res[step] = {};
           for (var k in results[i]) {
             current = results[i][k];
+            if (i == 0) {
+              total = total + current.count || current.count;
+            }
             res[step]['Time'] = res[step]['Time'] + (current.count * current.avg_time) || (current.count * current.avg_time); 
             res[step]['Count'] = res[step]['Count'] + current.count || current.count;
             res[step]['Event'] = res[step]['Event'] || current.event;
           }
         }
-        console.log(res);
+        console.log(res, total);
       });
       // Run queries and display results here
     </script>
