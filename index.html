@@ -8,6 +8,7 @@
   </head>
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
+    <table id='Result Table'></table>
     <script>
       MP.api.funnel('Character Created', 'Game Played', 'In-App Purchase').done(function(results) {
         var res = {};
@@ -29,10 +30,22 @@
             res[step]['Count'] = res[step]['Count'] + current.count || current.count;
             res[step]['Event'] = res[step]['Event'] || current.event;
           }
+          var table = document.getElementById('Result Table');
+          var row = table.insertRow(i);
+          var stepName = row.insertCell(0);
+          var count = row.insertCell(1);
+          var avgTime = row.insertCell(2);
+          var conv = row.insertCell(3);
+          stepName.innerHTML = res[step]['Event'];
+          count.innerHTML = res[step]['Count'];
+          avgTime.innerHTML = res[step]['Time'] / res[step]['Count'];
+          conv.innerHTML = res[step]['Count'] * 100 / total;
+          /*
           endResults[step]['Step Name'] = res[step]['Event'];
           endResults[step]['Count'] = res[step]['Count'];
           endResults[step]['Average Time'] = res[step]['Time'] / res[step]['Count'];
           endResults[step]['Total Conversion'] = res[step]['Count'] * 100 / total;
+          */
         }
         console.log(endResults);
       });
