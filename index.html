@@ -9,7 +9,7 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
-      MP.api.funnel(['Character Created', 'Game Played', 'In-App Purchase']).done(function(results) {
+      MP.api.funnel('Character Created', 'Game Played', 'In-App Purchase').done(function(results) {
         var res = {};
         var endResults = {};
         var numEvents = 3;
